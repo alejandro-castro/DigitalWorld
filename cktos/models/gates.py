@@ -2,8 +2,8 @@ from base import CombinationalCkto
 
 
 class NOT(CombinationalCkto):
-    def __init__(self, n_inputs, n_bits=1):
-        super().__init__(n_inputs, n_bits, negate=False)
+    def __init__(self, n_bits=1):
+        super().__init__(1, n_bits, negate=False)
 
     def update(self):
         self.output = ~self.inputs
