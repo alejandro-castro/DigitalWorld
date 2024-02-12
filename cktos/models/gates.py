@@ -1,4 +1,4 @@
-from base import CombinationalCkto
+from .base import CombinationalCkto
 
 
 class NOT(CombinationalCkto):

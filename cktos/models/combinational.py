@@ -1,5 +1,5 @@
 import math
-from base import CombinationalCkto
+from .base import CombinationalCkto
 
 
 class HalfAdder(CombinationalCkto):
