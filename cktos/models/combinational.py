@@ -73,7 +73,6 @@ class CodWithPriority(CombinationalCkto):
         super().__init__(1, n_bits, negate=False)
 
     def update(self):
-        # Aux is used to get the index search from the MSBs
         i = self.n_bits - 1
         bit = 1
         while bit and (i >= 0):
