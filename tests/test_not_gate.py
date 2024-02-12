@@ -1,4 +1,4 @@
-from ..cktos.models.gates import NOT, AND, OR, XOR
+from ..cktos.models.gates import NOT
 
 
 def test_not_default():
