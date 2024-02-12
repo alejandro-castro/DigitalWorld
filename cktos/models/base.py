@@ -32,7 +32,7 @@ class CombinationalCkto(object):
 
     def change_input(self, position, new):
         # It doesn't update automatically so more changes it can be made before actually computing the output
-        self.inputs[position] = new
+        self.inputs[position] = new & int(f"0b{'1'*self.n_bits}", 2)
 
     def __call__(self):
         self.update()
