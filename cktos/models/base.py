@@ -2,12 +2,12 @@
 # Because inside the class works with 32 bits for each input to calculate the output
 class CombinationalCkto(object):
     def __init__(self, n_inputs, n_bits, negate=False):
-        self.inputs = None
-        self.outputs = [0]
-
         self.n_bits = n_bits
+        self.inputs = None
         self.n_inputs = n_inputs
         self.negate = negate
+
+        self.outputs = [0]  # We set outputs after n_bits is set
 
     def update(self):
         pass
@@ -28,11 +28,20 @@ class CombinationalCkto(object):
     @inputs.setter
     def inputs(self, value):
         assert (value is None) or (len(value) == self.n_inputs)
-        self._inputs = value
+        if value:
+            self._inputs = [e & int(f"0b{'1'*self.n_bits}", 2) for e in value]
 
     def change_input(self, position, new):
         # It doesn't update automatically so more changes it can be made before actually computing the output
         self.inputs[position] = new & int(f"0b{'1'*self.n_bits}", 2)
+
+    @property
+    def outputs(self):
+        return self._outputs
+
+    @outputs.setter
+    def outputs(self, value):
+        self._outputs = [e & int(f"0b{'1'*self.n_bits}", 2) for e in value]
 
     def __call__(self):
         self.update()
