@@ -6,7 +6,7 @@ class NOT(CombinationalCkto):
         super().__init__(1, n_bits, negate=False)
 
     def update(self):
-        self.output = ~self.inputs
+        self.outputs = [~self.inputs[0]]
 
 
 class AND(CombinationalCkto):
@@ -18,7 +18,7 @@ class AND(CombinationalCkto):
         for i in range(self.n_inputs):
             out = out & self.inputs[i]
 
-        self.output = ~out if self.negate else out
+        self.outputs = [~out if self.negate else out]
 
 
 class OR(CombinationalCkto):
@@ -30,7 +30,7 @@ class OR(CombinationalCkto):
         for i in range(self.n_inputs):
             out = out | self.inputs[i]
 
-        self.output = ~out if self.negate else out
+        self.outputs = [~out if self.negate else out]
 
 
 class XOR(CombinationalCkto):
@@ -42,4 +42,4 @@ class XOR(CombinationalCkto):
         for i in range(self.n_inputs):
             out = out ^ self.inputs[i]
 
-        self.output = ~out if self.negate else out
+        self.outputs = [~out if self.negate else out]

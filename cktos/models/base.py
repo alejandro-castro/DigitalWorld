@@ -3,7 +3,7 @@
 class CombinationalCkto(object):
     def __init__(self, n_inputs, n_bits, negate=False):
         self.inputs = None
-        self.output = 0
+        self.outputs = [0]
 
         self.n_bits = n_bits
         self.n_inputs = n_inputs
@@ -36,4 +36,4 @@ class CombinationalCkto(object):
 
     def __call__(self):
         self.update()
-        return self.output  # It is a list
+        return self.outputs  # It is a list

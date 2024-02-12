@@ -10,7 +10,7 @@ class HalfAdder(CombinationalCkto):
 
     def update(self):
         out = self.inputs[0] + self.inputs[1]
-        self.output = [out % 2, out // 2]  # Output, carry
+        self.outputs = [out % 2, out // 2]  # Output, carry
 
 
 class FullAdder(CombinationalCkto):
@@ -21,7 +21,7 @@ class FullAdder(CombinationalCkto):
 
     def update(self):
         out = self.inputs[0] + self.inputs[1] + self.inputs[2]
-        self.output = [out % 2, out // 2]  # Output, carry
+        self.outputs = [out % 2, out // 2]  # Output, carry
 
 
 class Mux(CombinationalCkto):
@@ -34,7 +34,7 @@ class Mux(CombinationalCkto):
 
     def update(self):
         selector = self.inputs[-1]
-        self.output = self.inputs[selector]
+        self.outputs = [self.inputs[selector]]
 
     # Maybe we need to override the getter of the property n_inputs, to assert the property
 
@@ -56,13 +56,13 @@ class Demux(CombinationalCkto):
     @n_outputs.setter
     def n_outputs(self, value):
         self._n_outputs = value
-        self.output = [0] * value
+        self.outputs = [0] * value
 
     def update(self):
         selector = self.inputs[-1]
 
-        self.output = [0]*self.n_outputs
-        self.output[selector] = self.inputs[0]
+        self.outputs = [0]*self.n_outputs
+        self.outputs[selector] = self.inputs[0]
 
 
 class CodWithPriority(CombinationalCkto):
@@ -80,7 +80,7 @@ class CodWithPriority(CombinationalCkto):
             bit = (self.inputs[0] >> i) & 1
             i -= 1
 
-        self.output = i + 1
+        self.outputs = [i + 1]
         # If no input bit is one then the output is set to zero
 
 
@@ -91,6 +91,4 @@ class Decod(CombinationalCkto):
         super().__init__(1, n_bits, negate=False)
 
     def update(self):
-        self.output = [0] * (2 ** self.n_inputs)
-        selector = self.inputs[0]
-        self.output[selector] = 1
+        self.outputs = [2 ** self.inputs[0]]
